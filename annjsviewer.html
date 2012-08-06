@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+  <div id="images">
+</div>
+<script>
+$.getJSON("http://41.203.3.28:5500/api/annotations",
+  {
+    format: "json"
+  },
+  function(data) {
+      for (var i=0; i < data.length; i++){
+          console.log("Quote: ", data[i].quote)
+      }
+  
+  });
+  </script>
+</body>
+</html>
