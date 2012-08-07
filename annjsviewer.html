@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <style type="text/css">
+        table, th, td {
+            border: 1px solid black;
+            border-collapse:collapse;
+        }
+        td { padding:15px;}
+
+    </style>
 </head>
 <body>
-  <div id="images">
+    <div id="filters">
+        <span class='heading'>Filters</span>
+    </div>
+    <div id="annotations">
+        <span class='heading'>Annotations</span>
+        <table id="annList">
+            <tr>
+                <th>URL</th>
+                <th>Comment</th>
+                <th>Quote</th>
+            </tr>
+        </table>
+
+        
 </div>
 <script>
 $.getJSON("http://41.203.3.28:5500/api/annotations",
@@ -13,11 +34,16 @@ $.getJSON("http://41.203.3.28:5500/api/annotations",
   },
   function(data) {
       for (var i=0; i < data.length; i++){
-          console.log("Quote: ", data[i].quote)
-          console.log("Text: ", data[i].text)
+          console.log(data[i])
+          if (!data[i].reply){
+              $('#annList').append(("<tr><td><a href='"+ data[i].uri + "'>"+data[i].uri+"</a></td><td>"+ data[i].text + "</td><td>"+ data[i].quote + "</td></tr>"));
+              };
       }
+
+    
   
   });
+
   </script>
 </body>
 </html>
